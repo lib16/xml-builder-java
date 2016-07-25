@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.lib16</groupId>
 	<artifactId>xml-builder</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>lib16 XML Builder</name>
 	<description>lib16 XML Builder for Java 8 is a library for creating XML documents.</description>
 	<licenses>
@@ -11,6 +11,19 @@
 			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
 		</license>
 	</licenses>
+	<developers>
+		<developer>
+			<name>Manfred Hoffmann</name>
+			<email>m.hoffmann@lib16.com</email>
+			<organization>lib16</organization>
+			<organizationUrl>http://lib16.com</organizationUrl>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:git:git://github.com/lib16/xml-builder-java.git</connection>
+		<developerConnection>scm:git:ssh://github.com:lib16/xml-builder-java.git</developerConnection>
+		<url>http://github.com/lib16/xml-builder-java/tree/master</url>
+	</scm>
 	<dependencies>
 		<dependency>
 			<groupId>org.testng</groupId>
