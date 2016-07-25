@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
+/**
+ * Simplifies respectively unifies the creation of XML documents.
+ */
 public final class Xml
 {
 	public static final String CDATA_START = "<![CDATA[";
@@ -142,6 +145,11 @@ public final class Xml
 		return appendText("<!-- " + content + " -->");
 	}
 
+	/**
+	 * Sets attribute list.
+	 *
+	 * @see Attributes#setAttributes(Attributes)
+	 */
 	public Xml setAttributes(Attributes attributes)
 	{
 		this.attributes.setAttributes(attributes);
@@ -162,14 +170,14 @@ public final class Xml
 	public enum Space
 	{
 		DEFAULT, PRESERVE;
-		
+
 		private String str;
-		
+
 		private Space()
 		{
 			str = name().toLowerCase();
 		}
-		
+
 		@Override
 		public String toString()
 		{
@@ -221,6 +229,9 @@ public final class Xml
 		return setXmlns(uri, null);
 	}
 
+	/**
+	 * Sets the {@code xmlns} attribute, considering {@link LanguageProperties#getXmlNamespace()}.
+	 */
 	public Xml setXmlns()
 	{
 		return setXmlns(properties.getXmlNamespace());
@@ -270,7 +281,7 @@ public final class Xml
 	{
 		return disableTextIndentation(true);
 	}
-	
+
 	/**
 	 * Creates a string for {@code Content-Disposition} header field.
 	 *
@@ -289,16 +300,16 @@ public final class Xml
 
 	/**
 	 * Creates a string for {@code Content-Disposition} header field.
-	 * 
+	 *
 	 * Considers {@link LanguageProperties#getFilenameExtension()}.
-	 * 
+	 *
 	 * @param  filename  Without extension!
 	 */
 	public String getContentDispositionHeaderfield(String filename)
 	{
 		return getContentDispositionHeaderfield(filename, true);
 	}
-	
+
 	/**
 	 * Creates a string for {@code Content-Type} header field.
 	 *
@@ -335,16 +346,13 @@ public final class Xml
 		return markup;
 	}
 
-	/**
-	 *
-	 */
 	public String getMarkup()
 	{
 		return getMarkup("", new Options());
 	}
 
 	/**
-	 *
+	 * Shorthand method for {@code getRoot().getMarkup()}.
 	 */
 	@Override
 	public String toString()
