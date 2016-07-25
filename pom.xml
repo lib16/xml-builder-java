@@ -5,6 +5,7 @@
 	<version>1.0</version>
 	<name>lib16 XML Builder</name>
 	<description>lib16 XML Builder for Java 8 is a library for creating XML documents.</description>
+	<url>http://lib16.com</url>
 	<licenses>
 		<license>
 			<name>Apache License, Version 2.0</name>
