@@ -325,9 +325,9 @@ public final class Xml
 	public String getMarkup(String indentation, Options options)
 	{
 		String lineBr = options.getOption(this, Option.LINE_BREAK_DISABLED)
-				? "" : getLanguageProperties().getLineBreak();
+				? "" : properties.getLineBreak();
 		String indent = options.getOption(this, Option.INDENTATION_DISABLED)
-				? "" : getLanguageProperties().getIndentation();
+				? "" : properties.getIndentation();
 		boolean textIndentDisabled = options.getOption(this, Option.TEXT_INDENTATION_DISABLED);
 		if (lineBr == "") {
 			indent = "";

@@ -1,7 +1,5 @@
 package com.lib16.java.xml;
 
-import java.text.NumberFormat;
-
 public interface LanguageProperties
 {
 	boolean htmlModeEnabled();
@@ -27,6 +25,4 @@ public interface LanguageProperties
 	String getLineBreak();
 
 	String getIndentation();
-
-	NumberFormat getNumberFormat();
 }

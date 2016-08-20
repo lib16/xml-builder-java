@@ -3,6 +3,9 @@ package com.lib16.java.xml;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import com.lib16.java.utils.NumberFormatWrapper;
+import com.lib16.java.utils.Unit;
+
 /**
  * Manages and displays the attributes of an XML element.
  * You gain access to these with {@link Xml#getAttributes()}.
@@ -93,62 +96,51 @@ public class Attributes
 	/**
 	 * Sets a number attribute like {@code width} (SVG).
 	 */
-	public Attributes setNumber(String name, Number value, Unit unit)
+	public Attributes setNumber(String name, Number value, NumberFormatWrapper wrapper, Unit unit)
 	{
-		set(name, numberToString(value, unit));
+		set(name, numberToString(value, wrapper, unit));
 		return this;
 	}
 
 	/**
 	 * Sets a number attribute.
 	 */
-	public Attributes setNumber(String name, Number value)
+	public Attributes setNumber(String name, Number value, NumberFormatWrapper wrapper)
 	{
-		return setNumber(name, value, null);
+		return setNumber(name, value, wrapper, null);
 	}
 
 	/**
 	 * Sets a number attribute which accepts multiple values.
-	 * 
+	 *
 	 * @param  delimiter  The boundary string.
 	 */
-	public Attributes setNumber(String name, String delimiter, Unit unit, Number... numbers)
+	public Attributes setNumber(String name, String delimiter,
+			NumberFormatWrapper wrapper, Unit unit, Number... numbers)
 	{
 		for (Number number: numbers) {
-			setComplex(name, delimiter, false, numberToString(number, unit));
+			setComplex(name, delimiter, false, numberToString(number, wrapper, unit));
 		}
 		return this;
 	}
 
 	/**
 	 * Sets a number attribute which accepts multiple values.
-	 * 
+	 *
 	 * @param  delimiter  The boundary string.
 	 */
-	public Attributes setNumber(String name, String delimiter, Number... numbers)
+	public Attributes setNumber(String name, String delimiter,
+			NumberFormatWrapper wrapper, Number... numbers)
 	{
-		return setNumber(name, delimiter, null, numbers);
+		return setNumber(name, delimiter, wrapper, null, numbers);
 	}
 
 	/**
-	 * Converts a number to a string. The output depends on the set {@code LanguageProperties}.
+	 * Converts a number to a string.
 	 */
-	public String numberToString(Number value, Unit unit)
+	public static String numberToString(Number value, NumberFormatWrapper wrapper, Unit unit)
 	{
-		String string;
-		if (value instanceof Double && properties != null) {
-			string = properties.getNumberFormat().format(value.doubleValue());
-		}
-		else if (value instanceof Float && properties != null) {
-			string = properties.getNumberFormat().format(value.floatValue());
-		}
-		else if (value == null)
-		{
-			string = null;
-		}
-		else {
-			string = value.toString();
-		}
+		String string = wrapper.format(value);
 		if (value != null && unit != null) {
 			string += unit;
 		}
@@ -156,11 +148,11 @@ public class Attributes
 	}
 
 	/**
-	 * Converts a number to a string. The output depends on the set {@code LanguageProperties}.
+	 * Converts a number to a string.
 	 */
-	public String numberToString(Number value)
+	public static String numberToString(Number value, NumberFormatWrapper wrapper)
 	{
-		return numberToString(value, null);
+		return numberToString(value, wrapper, null);
 	}
 
 	/**
@@ -179,7 +171,7 @@ public class Attributes
 	{
 		String whitespace = " ";
 		if (properties != null && properties.verticalAttributesEnabled()) {
-			whitespace = "\n" + indentation;
+			whitespace = properties.getLineBreak() + indentation;
 		}
 		String markup = "";
 		for (Map.Entry<String, String> entry: attributes.entrySet()) {
@@ -201,26 +193,5 @@ public class Attributes
 		if (value == name && properties != null && properties.htmlModeEnabled())
 			return whitespace + name;
 		return whitespace + name + "=\"" + value + "\"";
-	}
-
-	/**
-	 * CSS Units
-	 */
-	public enum Unit
-	{
-		NONE, PX, EM, EX, PT, IN, CM, MM, PERCENT, REM, VW, VH;
-		
-		private String str;
-		
-		private Unit()
-		{
-			str = name() == "NONE" ? "" : name() == "PERCENT" ? "%" : name().toLowerCase();
-		}
-
-		@Override
-		public String toString()
-		{
-			return str;
-		}
 	}
 }

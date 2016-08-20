@@ -4,13 +4,16 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.lib16.java.xml.Attributes.Unit;
+import com.lib16.java.utils.NumberFormatWrapper;
+import com.lib16.java.utils.Unit;
 
 public class AttributesTest
 {
 	@DataProvider(name = "provider")
 	public static Object[][] provider()
 	{
+		NumberFormatWrapper fw = new NumberFormatWrapper(4);
+
 		return new Object[][] {
 			// set()
 			{new Attributes().set("a", "foo"),  " a=\"foo\""},
@@ -111,43 +114,40 @@ public class AttributesTest
 			},
 
 			// setNumber()
-			{new Attributes(new TProps()).setNumber("a", 12.3456789), " a=\"12.3457\""},
-			{new Attributes(new TProps()).setNumber("a", 12.3456789f), " a=\"12.3457\""},
-			{new Attributes(new TProps()).setNumber("a", 12.3), " a=\"12.3\""},
-			{new Attributes(new TProps()).setNumber("a", 12), " a=\"12\""},
-			{new Attributes(new TProps()).setNumber("a", 16, Unit.PX), " a=\"16px\""},
-			{new Attributes(new TProps()).setNumber("a", 50, Unit.PERCENT), " a=\"50%\""},
-			{new Attributes(new TProps()).setNumber("a", 1.5, Unit.NONE), " a=\"1.5\""},
-			{new Attributes(new TProps()).setNumber("a", 1.5, null), " a=\"1.5\""},
-			{new Attributes(new TProps()).setNumber("a", null), ""},
-			{new Attributes().setNumber("a", 12.3456789), " a=\"12.3456789\""},
-			{new Attributes().setNumber("a", 12.34567f), " a=\"12.34567\""},
+			{new Attributes().setNumber("a", 12.3456789, fw), " a=\"12.3457\""},
+			{new Attributes().setNumber("a", 12.3456789f, fw), " a=\"12.3457\""},
+			{new Attributes().setNumber("a", 12.3, fw), " a=\"12.3\""},
+			{new Attributes().setNumber("a", 12, fw), " a=\"12\""},
+			{new Attributes().setNumber("a", 16, fw, Unit.PX), " a=\"16px\""},
+			{new Attributes().setNumber("a", 50, fw, Unit.PERCENT), " a=\"50%\""},
+			{new Attributes().setNumber("a", 1.5, fw, Unit.NONE), " a=\"1.5\""},
+			{new Attributes().setNumber("a", 1.5, fw, null), " a=\"1.5\""},
+			{new Attributes().setNumber("a", null, fw), ""},
 			{
-				new Attributes(new TProps())
-						.setNumber("a", " ", 10.5, 5.25)
-						.setNumber("a", " ", 10.5)
-						.setNumber("a", " "),
+				new Attributes()
+						.setNumber("a", " ", fw, 10.5, 5.25)
+						.setNumber("a", " ", fw, 10.5)
+						.setNumber("a", " ", fw),
 				" a=\"10.5 5.25 10.5\""
 			},
-			{new Attributes().setNumber("a", " "), ""},
-			{new Attributes().setNumber("a", " ", Unit.PX), ""},
+			{new Attributes().setNumber("a", " ", fw), ""},
+			{new Attributes().setNumber("a", " ", fw, Unit.PX), ""},
 			{
-				new Attributes(new TProps())
-						.setNumber("a", " ", Unit.PX, 10.00001, 5)
-						.setNumber("a", " ", Unit.PX, 10)
-						.setNumber("a", " "),
+				new Attributes()
+						.setNumber("a", " ", fw, Unit.PX, 10.00001, 5)
+						.setNumber("a", " ", fw, Unit.PX, 10)
+						.setNumber("a", " ", fw),
 				" a=\"10px 5px 10px\""
 			},
 
 			// numberToString()
 			{
-				new Attributes().set("a", new Attributes(new TProps()).numberToString(0.99999)),
+				new Attributes().set("a", Attributes.numberToString(0.99999, fw)),
 				" a=\"1\""
 			},
 			{
-				new Attributes().set("a", new Attributes(new TProps())
-						.numberToString(50.55555, Unit.PERCENT)),
-				" a=\"50.5555%\""
+				new Attributes().set("a", Attributes.numberToString(50.55555, fw, Unit.PX)),
+				" a=\"50.5555px\""
 			},
 
 			// vertical alignment

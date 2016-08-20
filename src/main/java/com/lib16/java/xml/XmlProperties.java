@@ -1,18 +1,7 @@
 package com.lib16.java.xml;
 
-import java.text.NumberFormat;
-import java.util.Locale;
-
 public class XmlProperties implements LanguageProperties
 {
-	private NumberFormat numberFormat;
-
-	public XmlProperties()
-	{
-		numberFormat = NumberFormat.getNumberInstance(Locale.ENGLISH);
-		numberFormat.setMaximumFractionDigits(4);
-	}
-
 	@Override
 	public boolean htmlModeEnabled()
 	{
@@ -83,11 +72,5 @@ public class XmlProperties implements LanguageProperties
 	public String getIndentation()
 	{
 		return "\t";
-	}
-
-	@Override
-	public NumberFormat getNumberFormat()
-	{
-		return numberFormat;
 	}
 }

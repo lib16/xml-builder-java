@@ -1,7 +1,5 @@
 package com.lib16.java.xml;
 
-import com.lib16.java.xml.Xml;
-
 public class TProps extends XmlProperties
 {
 	Xml xml;
@@ -108,12 +106,6 @@ public class TProps extends XmlProperties
 	public TProps n(String namespace)
 	{
 		this.namespace = namespace;
-		return this;
-	}
-
-	public TProps m(int digits)
-	{
-		getNumberFormat().setMaximumFractionDigits(digits);
 		return this;
 	}
 }

@@ -1,5 +1,16 @@
 # lib16 XML Builder for Java 8
 
+## Dependency Information
+
+```java
+<dependency>
+    <groupId>com.lib16</groupId>
+    <artifactId>xml-builder</artifactId>
+    <version>[1.1,2)</version>
+</dependency>
+```
+See also http://search.maven.org/#artifactdetails|com.lib16|xml-builder|1.0|jar
+
 ## Basic Example
 
 ```java
