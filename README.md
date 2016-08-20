@@ -9,7 +9,7 @@
     <version>[1.1,2)</version>
 </dependency>
 ```
-See also http://search.maven.org/#artifactdetails|com.lib16|xml-builder|1.0|jar
+See also http://search.maven.org/#artifactdetails|com.lib16|xml-builder|1.1|jar
 
 ## Basic Example
 
