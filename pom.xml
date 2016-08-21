@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.lib16</groupId>
 	<artifactId>xml-builder</artifactId>
-	<version>1.1</version>
+	<version>1.1.1</version>
 	<name>lib16 XML Builder</name>
 	<description>lib16 XML Builder for Java 8 is a library for creating XML documents.</description>
 	<url>http://lib16.com</url>
