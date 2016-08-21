@@ -7,20 +7,20 @@ public class TargetAttribute
 	public enum Target
 	{
 		BLANK, SELF, PARENT, TOP;
-		
+
 		private String str;
-		
+
 		private Target()
 		{
 			str = "_" + name().toLowerCase();
 		}
-		
+
 		@Override
 		public String toString() {
 			return str;
 		}
 	}
-	
+
 	public static void setTarget(Xml xml, String target)
 	{
 		xml.getAttributes().set("target", target);
@@ -28,6 +28,6 @@ public class TargetAttribute
 
 	public static void setTarget(Xml xml, Target target)
 	{
-		setTarget(xml, target.toString());
+		setTarget(xml, target != null ? target.toString() : null);
 	}
 }

@@ -13,7 +13,7 @@ import com.lib16.java.xml.shared.TargetAttribute.Target;
 public class SharedAttributeTest extends TestClass
 {
 	static Xml xml;
-	
+
 	@BeforeMethod
 	public void before()
 	{
@@ -83,7 +83,7 @@ public class SharedAttributeTest extends TestClass
 				},
 				"<ul>\n\t<li>Berlin</li>\n\t<li class=\"a-2nd\">Hamburg</li>\n\t<li>Munich</li>\n</ul>"
 			},
-			
+
 			// MediaAttribute.setMedia()
 			{
 				(ReturnXml) () -> {
@@ -100,7 +100,7 @@ public class SharedAttributeTest extends TestClass
 				},
 				"<e>"
 			},
-			
+
 			// TargetAttribute.setTarget()
 			{
 				(ReturnXml) () -> {
@@ -108,6 +108,13 @@ public class SharedAttributeTest extends TestClass
 					return xml;
 				},
 				"<e target=\"_top\">"
+			},
+			{
+				(ReturnXml) () -> {
+					TargetAttribute.setTarget(xml, (Target) null);
+					return xml;
+				},
+				"<e>"
 			},
 			{
 				(ReturnXml) () -> {
@@ -124,7 +131,7 @@ public class SharedAttributeTest extends TestClass
 	{
 		assertEquals(actual, expected);
 	}
-	
+
 	static Xml table()
 	{
 		Xml table = TLang.createSub("table").getXml();
@@ -154,7 +161,7 @@ public class SharedAttributeTest extends TestClass
 		tr.append("td", "15");
 		return table;
 	}
-	
+
 	static Xml list()
 	{
 		Xml list = TLang.createSub("ul").getXml();
