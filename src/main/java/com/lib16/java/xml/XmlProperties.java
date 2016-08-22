@@ -1,5 +1,7 @@
 package com.lib16.java.xml;
 
+import java.util.LinkedHashMap;
+
 public class XmlProperties implements LanguageProperties
 {
 	@Override
@@ -34,6 +36,12 @@ public class XmlProperties implements LanguageProperties
 
 	@Override
 	public String getXmlNamespace()
+	{
+		return null;
+	}
+
+	@Override
+	public LinkedHashMap<String, String> getMoreXmlNamespaces()
 	{
 		return null;
 	}

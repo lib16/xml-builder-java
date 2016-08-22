@@ -3,6 +3,7 @@ package com.lib16.java.xml;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Simplifies respectively unifies the creation of XML documents.
@@ -230,11 +231,19 @@ public final class Xml
 	}
 
 	/**
-	 * Sets the {@code xmlns} attribute, considering {@link LanguageProperties#getXmlNamespace()}.
+	 * Sets {@code xmlns} attributes, considering
+	 * {@link LanguageProperties#getXmlNamespace()} and
+	 * {@link LanguageProperties#getMoreXmlNamespaces()}.
 	 */
 	public Xml setXmlns()
 	{
-		return setXmlns(properties.getXmlNamespace());
+		setXmlns(properties.getXmlNamespace());
+		if (properties.getMoreXmlNamespaces() != null) {
+			for (Map.Entry<String, String> entry: properties.getMoreXmlNamespaces().entrySet()) {
+				setXmlns(entry.getValue(), entry.getKey());
+			}
+		}
+		return this;
 	}
 
 	public ProcessingInstruction addProcessingInstruction(String target, String content)

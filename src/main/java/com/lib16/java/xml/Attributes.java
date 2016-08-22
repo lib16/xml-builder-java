@@ -135,6 +135,14 @@ public class Attributes
 		return setNumber(name, delimiter, wrapper, null, numbers);
 	}
 
+	public Attributes setNull(String... names)
+	{
+		for (String name: names) {
+			set(name, null);
+		}
+		return this;
+	}
+
 	/**
 	 * Converts a number to a string.
 	 */

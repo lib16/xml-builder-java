@@ -1,5 +1,7 @@
 package com.lib16.java.xml;
 
+import java.util.LinkedHashMap;
+
 public interface LanguageProperties
 {
 	boolean htmlModeEnabled();
@@ -13,6 +15,8 @@ public interface LanguageProperties
 	String getXmlVersion();
 
 	String getXmlNamespace();
+
+	LinkedHashMap<String, String> getMoreXmlNamespaces();
 
 	String getNamespacePrefix();
 

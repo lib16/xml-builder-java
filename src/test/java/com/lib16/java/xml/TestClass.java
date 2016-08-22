@@ -1,10 +1,9 @@
 package com.lib16.java.xml;
 
-import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
 
 public class TestClass {
-	
+
 	public void assertEquals(Object actual, String expected)
 	{
 		if (actual instanceof ReturnXml) {
@@ -19,8 +18,7 @@ public class TestClass {
 		else if (actual instanceof Language) {
 			actual = ((Language) actual).getXml().toString();
 		}
-		Assert.assertEquals(actual, expected,
-				"Difference: " + StringUtils.difference((String) actual, expected));
+		Assert.assertEquals(actual, expected);
 	}
 
 	public interface ReturnXml
