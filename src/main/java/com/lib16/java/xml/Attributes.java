@@ -3,7 +3,7 @@ package com.lib16.java.xml;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import com.lib16.java.utils.NumberFormatWrapper;
+import com.lib16.java.utils.NumberFormatter;
 import com.lib16.java.utils.Unit;
 
 /**
@@ -96,18 +96,18 @@ public class Attributes
 	/**
 	 * Sets a number attribute like {@code width} (SVG).
 	 */
-	public Attributes setNumber(String name, Number value, NumberFormatWrapper wrapper, Unit unit)
+	public Attributes setNumber(String name, Number value, NumberFormatter formatter, Unit unit)
 	{
-		set(name, numberToString(value, wrapper, unit));
+		set(name, numberToString(value, formatter, unit));
 		return this;
 	}
 
 	/**
 	 * Sets a number attribute.
 	 */
-	public Attributes setNumber(String name, Number value, NumberFormatWrapper wrapper)
+	public Attributes setNumber(String name, Number value, NumberFormatter formatter)
 	{
-		return setNumber(name, value, wrapper, null);
+		return setNumber(name, value, formatter, null);
 	}
 
 	/**
@@ -116,10 +116,10 @@ public class Attributes
 	 * @param  delimiter  The boundary string.
 	 */
 	public Attributes setNumber(String name, String delimiter,
-			NumberFormatWrapper wrapper, Unit unit, Number... numbers)
+			NumberFormatter formatter, Unit unit, Number... numbers)
 	{
 		for (Number number: numbers) {
-			setComplex(name, delimiter, false, numberToString(number, wrapper, unit));
+			setComplex(name, delimiter, false, numberToString(number, formatter, unit));
 		}
 		return this;
 	}
@@ -130,9 +130,9 @@ public class Attributes
 	 * @param  delimiter  The boundary string.
 	 */
 	public Attributes setNumber(String name, String delimiter,
-			NumberFormatWrapper wrapper, Number... numbers)
+			NumberFormatter formatter, Number... numbers)
 	{
-		return setNumber(name, delimiter, wrapper, null, numbers);
+		return setNumber(name, delimiter, formatter, null, numbers);
 	}
 
 	public Attributes setNull(String... names)
@@ -146,9 +146,9 @@ public class Attributes
 	/**
 	 * Converts a number to a string.
 	 */
-	public static String numberToString(Number value, NumberFormatWrapper wrapper, Unit unit)
+	public static String numberToString(Number value, NumberFormatter formatter, Unit unit)
 	{
-		String string = wrapper.format(value);
+		String string = formatter.format(value);
 		if (value != null && unit != null) {
 			string += unit;
 		}
@@ -158,9 +158,9 @@ public class Attributes
 	/**
 	 * Converts a number to a string.
 	 */
-	public static String numberToString(Number value, NumberFormatWrapper wrapper)
+	public static String numberToString(Number value, NumberFormatter formatter)
 	{
-		return numberToString(value, wrapper, null);
+		return numberToString(value, formatter, null);
 	}
 
 	/**

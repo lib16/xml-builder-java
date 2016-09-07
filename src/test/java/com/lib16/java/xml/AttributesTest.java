@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.lib16.java.utils.NumberFormatWrapper;
+import com.lib16.java.utils.NumberFormatter;
 import com.lib16.java.utils.Unit;
 
 public class AttributesTest
@@ -12,7 +12,7 @@ public class AttributesTest
 	@DataProvider(name = "provider")
 	public static Object[][] provider()
 	{
-		NumberFormatWrapper fw = new NumberFormatWrapper(4);
+		NumberFormatter fw = new NumberFormatter(4);
 
 		return new Object[][] {
 			// set()
