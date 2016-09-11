@@ -28,6 +28,6 @@ public class TargetAttribute
 
 	public static void setTarget(Xml xml, Target target)
 	{
-		setTarget(xml, target != null ? target.toString() : null);
+		xml.getAttributes().setEnum("target", target);
 	}
 }

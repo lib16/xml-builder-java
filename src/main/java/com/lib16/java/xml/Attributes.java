@@ -135,6 +135,17 @@ public class Attributes
 		return setNumber(name, delimiter, formatter, null, numbers);
 	}
 
+	public Attributes setEnum(String name, Enum<?> value)
+	{
+		if (value == null) {
+			set(name, null);
+		}
+		else {
+			set(name, value.toString());
+		}
+		return this;
+	}
+
 	public Attributes setNull(String... names)
 	{
 		for (String name: names) {
