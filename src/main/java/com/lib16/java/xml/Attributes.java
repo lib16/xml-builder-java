@@ -146,6 +146,14 @@ public class Attributes
 		return this;
 	}
 
+	public Attributes setEnum(String name, String delimiter, Enum<?>... values)
+	{
+		for (Enum<?> value: values) {
+			setComplex(name, delimiter, false, value != null ? value.toString() : null);
+		}
+		return this;
+	}
+
 	public Attributes setNull(String... names)
 	{
 		for (String name: names) {
@@ -168,6 +176,7 @@ public class Attributes
 
 	/**
 	 * Converts a number to a string.
+	 * TODO remove
 	 */
 	public static String numberToString(Number value, NumberFormatter formatter)
 	{

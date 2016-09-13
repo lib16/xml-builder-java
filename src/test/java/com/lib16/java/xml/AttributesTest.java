@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 
 import com.lib16.java.utils.NumberFormatter;
 import com.lib16.java.utils.Unit;
+import com.lib16.java.xml.shared.MediaAttribute.Media;
 
 public class AttributesTest
 {
@@ -138,6 +139,24 @@ public class AttributesTest
 						.setNumber("a", " ", fw, Unit.PX, 10)
 						.setNumber("a", " ", fw),
 				" a=\"10px 5px 10px\""
+			},
+
+			// setEnum()
+			{
+				new Attributes().setEnum("a", Media.ALL),
+				" a=\"all\""
+			},
+			{
+				new Attributes().setEnum("a", null),
+				""
+			},
+			{
+				new Attributes().setEnum("a", " ", Media.SCREEN, Media.PRINT),
+				" a=\"screen print\""
+			},
+			{
+				new Attributes().setEnum("a", " ", Media.SCREEN, null, Media.PRINT),
+				" a=\"screen print\""
 			},
 
 			// numberToString()
