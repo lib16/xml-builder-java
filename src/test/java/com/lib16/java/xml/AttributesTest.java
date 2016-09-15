@@ -5,7 +5,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.lib16.java.utils.NumberFormatter;
-import com.lib16.java.utils.Unit;
+import com.lib16.java.utils.enums.Unit;
 import com.lib16.java.xml.shared.MediaAttribute.Media;
 
 public class AttributesTest

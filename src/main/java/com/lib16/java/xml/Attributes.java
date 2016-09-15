@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import com.lib16.java.utils.NumberFormatter;
-import com.lib16.java.utils.Unit;
+import com.lib16.java.utils.enums.Unit;
 
 /**
  * Manages and displays the attributes of an XML element.
